@@ -1,6 +1,6 @@
-"""Matematyka kamery. Kąty w stopniach, czas w sekundach.
+"""Camera mathematics. Angles in degrees, time in seconds.
 
-Przykłady edukacyjne, niezależne od API silnika.
+Educational examples independent of engine APIs.
 """
 import math
 from dataclasses import dataclass
@@ -8,13 +8,13 @@ from dataclasses import dataclass
 
 def require_finite(*values):
     if not all(math.isfinite(value) for value in values):
-        raise ValueError('Wartości muszą być skończone')
+        raise ValueError('Values must be finite')
 
 
 def horizontal_to_vertical(horizontal_degrees, aspect):
     require_finite(horizontal_degrees, aspect)
     if not 0 < horizontal_degrees < 180 or aspect <= 0:
-        raise ValueError('FOV musi być między 0 a 180, aspect musi być dodatni')
+        raise ValueError('FOV must be strictly between 0 and 180; aspect must be positive')
     half_angle = math.radians(horizontal_degrees) / 2
     return math.degrees(2 * math.atan(math.tan(half_angle) / aspect))
 
@@ -22,7 +22,7 @@ def horizontal_to_vertical(horizontal_degrees, aspect):
 def exponential_follow(current, target, response, dt):
     require_finite(current, target, response, dt)
     if response < 0 or dt < 0:
-        raise ValueError('Response i dt nie mogą być ujemne')
+        raise ValueError('Response and dt must be nonnegative')
     alpha = -math.expm1(-response * dt)
     return current + (target - current) * alpha
 
@@ -36,14 +36,14 @@ def focus_range(distance, outer_near, inner_near, inner_far, outer_far):
     require_finite(distance, outer_near, inner_near, inner_far, outer_far)
     if not (distance >= 0 and 0 <= inner_near <= outer_near
             and 0 <= inner_far <= outer_far):
-        raise ValueError('Nieprawidłowy dystans lub porządek offsetów')
+        raise ValueError('Invalid distance or offset ordering')
     return (max(0, distance - outer_near), max(0, distance - inner_near),
             distance + inner_far, distance + outer_far)
 
 
 @dataclass
 class ScalarTransition:
-    """Ease-out o zadanym czasie. Identyczny cel nie restartuje timera."""
+    """Fixed-duration ease-out. An identical target does not restart the timer."""
     current: float
     target: float = None
     start: float = None
@@ -58,8 +58,8 @@ class ScalarTransition:
     def request(self, target, duration):
         require_finite(target, duration)
         if duration < 0:
-            raise ValueError('Czas nie może być ujemny')
-        # duration == 0 jest jawnym żądaniem natychmiastowego ustawienia.
+            raise ValueError('Duration must be nonnegative')
+        # duration == 0 explicitly requests an immediate assignment.
         if duration == 0:
             self.current = self.target = self.start = target
             self.duration = self.elapsed = 0.0
@@ -72,7 +72,7 @@ class ScalarTransition:
     def update(self, dt):
         require_finite(dt)
         if dt < 0:
-            raise ValueError('dt nie może być ujemne')
+            raise ValueError('dt must be nonnegative')
         if self.duration == 0:
             return self.current
         self.elapsed = min(self.duration, self.elapsed + dt)

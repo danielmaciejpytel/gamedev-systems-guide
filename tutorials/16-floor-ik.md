@@ -1,7 +1,7 @@
-# Floor IK i stabilny kontakt z podłożem
+# Floor IK and stable ground contact
 
 ## Pipeline
-Najpierw próbkuj animację bazową, potem wykryj podłoże, dopasuj miednicę i na końcu rozwiąż IK nóg. Ustal, czy trace korzysta z pozy przed korektą czy po niej, aby uniknąć sprzężenia zwrotnego.
+Sample the base animation first, detect the ground, adjust the pelvis, and then solve leg IK. Decide whether traces use the pose before or after correction to avoid feedback loops.
 
 ```text
 baseFeet = animatedPose.feet
@@ -11,17 +11,17 @@ pose = applyPelvisOffset(animatedPose, pelvisOffset)
 pose = solveTwoBoneLegs(pose, contacts)
 ```
 
-## Kontakt
-Normalna powierzchni wyznacza orientację stopy, ale ogranicz maksymalny przechył. Wygładzaj wejście i wyjście kontaktu. Blokuj stopę podporową względem podłoża; na ruchomej platformie przechowuj punkt w przestrzeni tej platformy.
+## Contact
+The surface normal determines foot orientation, but limit the maximum tilt. Smooth contact entry and exit. Lock the supporting foot relative to the ground; on a moving platform, store the point in that platform's space.
 
-Miednica powinna pomagać obu nogom. Ogranicz pionowy offset i rozciąganie kończyny. Nie traktuj każdego trafienia trace jako odpowiedniego podłoża: sprawdź warstwę, nachylenie i zasięg.
+The pelvis should help both legs. Limit vertical offset and limb stretching. Not every trace hit is suitable ground: check collision layer, slope, and reach.
 
-## Odporność
-Waliduj kości, długości segmentów oraz kierunek zgięcia. Brak trafienia powinien zmniejszać wagę IK. Teleport resetuje cache kontaktu. Przy niskim LOD można ograniczyć częstotliwość trace, zachowując płynne wygaszanie.
+## Robustness
+Validate bones, segment lengths, and bend direction. A missing hit should reduce IK weight. Teleporting resets the contact cache. At low LOD, trace frequency can be reduced while retaining smooth fading.
 
-## Sprawdź w grze
-Przejdź po schodach, krawędzi, pochyłości i ruchomej platformie. Testuj lądowanie i utratę podłoża. Rysuj trace, punkt kontaktu, normalną i końcowy cel IK.
+## Check in game
+Walk over stairs, an edge, a slope, and a moving platform. Test landing and loss of ground contact. Draw traces, contact points, normals, and final IK targets.
 
 ---
 
-[Spis treści](../README.md) · [Poprzedni tutorial](15-root-motion-i-korekta-kroku.md) · [Następny tutorial](17-sceny-i-przejecie-kontroli.md)
+[Table of contents](../README.md) | [Previous tutorial](15-root-motion-and-stride.md) | [Next tutorial](17-scenes-and-control-handover.md)

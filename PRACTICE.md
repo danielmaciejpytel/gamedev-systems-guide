@@ -1,18 +1,18 @@
-# Plan ćwiczeń w silniku
+# In-engine practice plan
 
-Zbuduj niewielką scenę testową i przechodź przez zadania w podanej kolejności.
+Build a small test scene and work through these exercises in order.
 
-| Ćwiczenie | Oczekiwany wynik | Dowód |
+| Exercise | Expected result | Evidence |
 |---|---|---|
-| Jeden właściciel kamery | Brak podwójnego yaw i nadpisania transformacji | Log właściciela i kątów |
-| FOV przy zmianie proporcji | Zachowanie wybranej osi FOV | Zrzuty tej samej sceny |
-| Powtarzane żądanie przejścia | Osiągnięcie celu w zadanym czasie | Wykres wartości i czasu |
-| Cel DOF znika | Kontrolowany fallback | Nagranie i log providera |
-| Mieszanie chodu i biegu | Brak podwójnych kroków | Log events i odsłuch |
-| Ruch przy ścianie | Animacja zgodna z rzeczywistym ruchem | Prędkość żądana i rzeczywista |
-| Schody i platforma | Stabilna stopa podporowa | Podgląd trace oraz IK |
-| Kamera przy przeszkodzie | Brak clippingu i łagodny powrót | Nagranie boom |
-| Szybkie odwrócenie przejścia | Ciągłość widoku i optyki | Log aktywnej perspektywy |
-| Przerwanie sceny | Przywrócenie poprawnego sterowania | Log blokad i snapshotu |
+| One camera owner | No doubled yaw or overwritten transform | Owner and angle logs |
+| FOV across aspect ratios | Preserve the selected FOV axis | Screenshots of the same scene |
+| Repeated transition request | Reach the target within the specified duration | Value-over-time plot |
+| DOF target disappears | Controlled fallback | Recording and provider log |
+| Walk/run blending | No duplicate footsteps | Event log and audio playback |
+| Movement against a wall | Animation matches actual motion | Desired and actual speed |
+| Stairs and a platform | Stable supporting foot | Trace and IK visualization |
+| Camera near an obstacle | No clipping and a smooth return | Boom recording |
+| Rapid transition reversal | Continuous view and optics | Active-perspective log |
+| Scene interruption | Restore correct controls | Lock and snapshot logs |
 
-Powtórz ćwiczenia przy różnych FPS, pauzie i slow motion. Dodaj brak zasobu, teleport i zmianę konfiguracji w runtime. Oddziel wynik testu matematyki od potwierdzenia działania integracji oraz oceny odczucia przez gracza.
+Repeat exercises at different frame rates, during pause, and in slow motion. Include missing assets, teleportation, and configuration changes at runtime. Separate mathematical test results from integration evidence and player feedback on feel.

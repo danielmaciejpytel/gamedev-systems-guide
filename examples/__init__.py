@@ -1,1 +1,1 @@
-"""Samodzielne przykłady do tutoriali."""
+"""Standalone examples for the tutorials."""

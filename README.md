@@ -1,46 +1,48 @@
 # GameDev Systems Guide
 
-Praktyczne tutoriale po polsku o systemach, które pomagają zbudować responsywną i spójną grę: kamerze, animacji, lokomocji, kontakcie z podłożem oraz przejściach między gameplayem i scenami.
+Practical tutorials on systems that help build a responsive and coherent game: cameras, animation, locomotion, ground contact, and transitions between gameplay and scenes.
 
-Każdy tutorial przedstawia problem, sposób rozwiązania i scenariusz sprawdzenia w grze. Zacznij od właściciela kamery, jeśli budujesz cały system. Przy konkretnym problemie wybierz odpowiedni temat ze spisu.
+Each tutorial presents a problem, an implementation approach, and an in-game verification scenario. Start with camera ownership when building a complete system. For a specific issue, choose the relevant topic below.
 
-## Jak korzystać
+## How to use this guide
 
-Materiał jest niezależny od konkretnego silnika. Nazwy typów, kości, pól i zasobów są przykładowe. Fragmenty oznaczone `text` to pseudokod, który wymaga adaptera do jednostek, osi, API i cyklu aktualizacji Twojego silnika. Nie stanowią gotowego pluginu.
+The material is engine-independent. Type, bone, field, and asset names are illustrative. Blocks marked `text` are pseudocode that needs an adapter for your engine's units, axes, APIs, and update lifecycle. They are not a ready-made plugin.
 
-Przykłady Python są samodzielne i korzystają wyłącznie z biblioteki standardowej. Pokazują matematykę i zachowanie prostych mechanizmów. Nie symulują renderera ani kompletnego grafu animacji.
+The Python examples are standalone and use only the standard library. They demonstrate mathematics and simple mechanisms, rather than simulating a renderer or a complete animation graph.
+
+From the repository root, run:
 
 ```sh
 python -m unittest discover -s tests -v
 ```
 
-## Tutoriale
+## Tutorials
 
-- [Kto naprawdę steruje kamerą?](tutorials/01-wlasnosc-kamery.md)
-- [Wejście, pauza i różne zegary](tutorials/02-wejscie-i-czas.md)
-- [Kąty, korekty i resety bez niespodzianek](tutorials/03-katy-limity-i-resety.md)
-- [Miękkie granice obrotu i powrót do środka](tutorials/04-miekkie-granice.md)
-- [FOV: poziomy, pionowy i zależny od ekranu](tutorials/05-fov-i-projekcja.md)
-- [Wygładzanie parametrów i częściowe aktualizacje](tutorials/06-blend-parametrow.md)
-- [Głębia ostrości i dynamiczny cel](tutorials/07-glebia-ostrosci.md)
-- [Warstwy ruchu kamery i komfort gracza](tutorials/08-warstwy-ruchu-kamery.md)
-- [Rig, refleksja i stabilne kontrakty](tutorials/09-rig-i-kontrakty-danych.md)
-- [Lokomocja: intencja, rzeczywisty ruch i faza kroku](tutorials/10-lokomocja.md)
-- [Tabele doboru animacji, wildcardy i fallback](tutorials/11-dobor-animacji.md)
-- [Odtwarzanie klipów, blend i zdarzenia](tutorials/12-klipy-blend-i-zdarzenia.md)
-- [Maszyna stanów i płynne przejścia przez inercję](tutorials/13-maszyna-stanow-i-inercja.md)
-- [Damping, interpolacja i sprężyny](tutorials/14-damping-i-sprezyny.md)
-- [Root motion, dopasowanie celu i długość kroku](tutorials/15-root-motion-i-korekta-kroku.md)
-- [Floor IK i stabilny kontakt z podłożem](tutorials/16-floor-ik.md)
-- [Sceny, kolejki żądań i oddawanie sterowania](tutorials/17-sceny-i-przejecie-kontroli.md)
-- [Kamera pojazdu: boom, autocenter i kolizje](tutorials/18-kamera-pojazdu.md)
-- [Przełączanie perspektywy i blend pełnego widoku](tutorials/19-perspektywy-i-proxy.md)
-- [Konfiguracja, cache i dowody poprawnego działania](tutorials/20-konfiguracja-i-debugowanie.md)
+- [Who actually controls the camera?](tutorials/01-camera-ownership.md)
+- [Input, pause, and different clocks](tutorials/02-input-and-time.md)
+- [Predictable angles, corrections, and resets](tutorials/03-angles-limits-and-resets.md)
+- [Soft rotation limits and return to center](tutorials/04-soft-rotation-limits.md)
+- [FOV: horizontal, vertical, and aspect ratio](tutorials/05-fov-and-projection.md)
+- [Parameter smoothing and partial updates](tutorials/06-parameter-blending.md)
+- [Depth of field and a dynamic focus target](tutorials/07-depth-of-field.md)
+- [Camera motion layers and player comfort](tutorials/08-camera-motion-and-comfort.md)
+- [Rigs, reflection, and stable data contracts](tutorials/09-rigs-and-data-contracts.md)
+- [Locomotion: intent, actual movement, and stride phase](tutorials/10-locomotion.md)
+- [Animation selection tables, wildcards, and fallback](tutorials/11-animation-selection.md)
+- [Clip playback, blending, and events](tutorials/12-clips-blending-and-events.md)
+- [State machines and smooth transitions through inertialization](tutorials/13-state-machines-and-inertialization.md)
+- [Damping, interpolation, and springs](tutorials/14-damping-and-springs.md)
+- [Root motion, target alignment, and stride length](tutorials/15-root-motion-and-stride.md)
+- [Floor IK and stable ground contact](tutorials/16-floor-ik.md)
+- [Scenes, request queues, and returning control](tutorials/17-scenes-and-control-handover.md)
+- [Vehicle camera: boom, autocenter, and collision](tutorials/18-vehicle-camera.md)
+- [Switching perspective and blending the full view](tutorials/19-perspectives-and-proxy.md)
+- [Configuration, caches, and evidence of correct behavior](tutorials/20-configuration-and-debugging.md)
 
-## Przykłady i ćwiczenia
+## Examples and exercises
 
-- [Matematyka kamery i wygładzanie](examples/camera_math.py)
-- [Testy zachowania przykładów](tests/test_camera_math.py)
-- [Plan ćwiczeń w silniku](PRACTICE.md)
+- [Camera mathematics and smoothing](examples/camera_math.py)
+- [Behavior tests for the examples](tests/test_camera_math.py)
+- [In-engine practice plan](PRACTICE.md)
 
-Płynna kamera, animacje i ruch to część jakości gry. Czytelne cele, projekt poziomów, dźwięk, balans oraz dostępność wymagają również własnych iteracji i testów z graczami.
+Smooth cameras, animation, and movement contribute to game quality. Clear goals, level design, sound, balance, and accessibility also require their own iterations and playtests.

@@ -1,0 +1,1 @@
+"""Samodzielne przykłady do tutoriali."""
